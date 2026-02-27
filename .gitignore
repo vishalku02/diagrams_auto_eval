@@ -1,0 +1,26 @@
+# Data (large CSV - don't commit)
+*.csv
+Coteach Visuals Data*.csv
+
+# Results cache (generated at runtime)
+results/cache/
+
+# LaTeX build artifacts
+styles/*.aux
+styles/*.log
+styles/*.pdf
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
