@@ -6,6 +6,7 @@ from typing import Literal
 from pydantic import BaseModel, Field, ConfigDict
 
 ValueYesNo = Literal["Yes", "No"]
+ValueYesNoNA = Literal["Yes", "No", "N/A"]
 
 
 class YesNoCriterion(BaseModel):
@@ -14,15 +15,20 @@ class YesNoCriterion(BaseModel):
     value: ValueYesNo
 
 
+class YesNoNACriterion(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    rationale: str = Field(min_length=1)
+    value: ValueYesNoNA
+
+
 class PedagogicalJudgeOutput(BaseModel):
-    """5 binary dimensions derived from Mayer's CTML principles."""
+    """4 dimensions aligned with prompts/pedagogical_quality.md."""
     model_config = ConfigDict(extra="forbid")
 
     coherence: YesNoCriterion
-    signaling: YesNoCriterion
-    spatial_contiguity: YesNoCriterion
-    segmenting: YesNoCriterion
-    appropriate_labeling: YesNoCriterion
+    signaling: YesNoNACriterion
+    label_accuracy: YesNoNACriterion
+    labeling: YesNoNACriterion
 
 
 STRICT_RESPONSE_FORMAT = {

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import time
 from datetime import datetime
@@ -25,6 +26,7 @@ from utils.schema import STRICT_RESPONSE_FORMAT, PedagogicalJudgeOutput
 CACHE_ROOT = Path("results/cache")
 RESULTS_ROOT = Path("results")
 PROMPT_PATH = Path("prompts/pedagogical_quality.md")
+RUBRIC_DIMENSIONS = ["coherence", "signaling", "label_accuracy", "labeling"]
 
 
 def load_prompt() -> str:
@@ -32,24 +34,63 @@ def load_prompt() -> str:
     return PROMPT_PATH.read_text(encoding="utf-8")
 
 
+def prompt_hash(prompt_template: str) -> str:
+    return hashlib.sha256(prompt_template.encode("utf-8")).hexdigest()[:12]
+
+
 def safe_model_name(model_name: str) -> str:
     return model_name.replace("/", "_").replace(":", "_").replace(".", "-")
 
 
-def load_samples(csv_path: Path, limit: int = 0) -> list[dict]:
-    """Load diagram samples from CSV."""
-    df = pd.read_csv(csv_path)
-    samples = []
-    for idx, row in df.iterrows():
-        diagram_id = str(row.get("diagram_id", "")).strip() or str(idx)
-        image_path = row.get("image_png_path", row.get("image", ""))
-        image_path = Path(image_path) if isinstance(image_path, str) and image_path else None
+def _normalize_path(value: Any) -> Optional[Path]:
+    if not isinstance(value, str):
+        return None
+    normalized = value.strip()
+    if not normalized:
+        return None
+    return Path(normalized)
 
-        samples.append({
-            "diagram_id": diagram_id,
-            "image_path": image_path,
-            "prompt_text": str(row.get("prompt", "")),
-        })
+
+def _normalize_string(value: Any) -> str:
+    if value is None:
+        return ""
+    if pd.isna(value):
+        return ""
+    return str(value).strip()
+
+
+def load_samples(data_path: Path, limit: int = 0) -> list[dict]:
+    """Load diagram samples from CSV or JSON."""
+    samples = []
+    if data_path.suffix.lower() == ".json":
+        payload = json.loads(data_path.read_text(encoding="utf-8"))
+        if not isinstance(payload, list):
+            raise ValueError(f"JSON input must be an array: {data_path}")
+        for idx, row in enumerate(payload):
+            if not isinstance(row, dict):
+                continue
+            diagram_id = _normalize_string(row.get("diagram_id")) or _normalize_string(row.get("idx")) or str(idx)
+            image_path = _normalize_path(
+                row.get("image_png_path")
+                or row.get("image")
+                or row.get("file-path")
+                or row.get("file_path")
+            )
+            samples.append({
+                "diagram_id": diagram_id,
+                "image_path": image_path,
+                "prompt_text": _normalize_string(row.get("prompt")),
+            })
+    else:
+        df = pd.read_csv(data_path)
+        for idx, row in df.iterrows():
+            diagram_id = _normalize_string(row.get("diagram_id")) or str(idx)
+            image_path = _normalize_path(row.get("image_png_path", row.get("image", "")))
+            samples.append({
+                "diagram_id": diagram_id,
+                "image_path": image_path,
+                "prompt_text": _normalize_string(row.get("prompt")),
+            })
 
     if limit > 0:
         samples = samples[:limit]
@@ -59,10 +100,21 @@ def load_samples(csv_path: Path, limit: int = 0) -> list[dict]:
     return samples
 
 
+def build_evaluation_prompt(prompt_template: str, sample_prompt: str) -> str:
+    if not sample_prompt:
+        return prompt_template
+    return (
+        f"{prompt_template}\n\n"
+        "## Diagram Prompt\n"
+        f"{sample_prompt}\n"
+    )
+
+
 async def evaluate_model(
     model_name: str,
     samples: list[dict],
     prompt_template: str,
+    prompt_cache_key: str,
     *,
     temperature: float = 0.0,
     concurrency: int = 4,
@@ -71,7 +123,7 @@ async def evaluate_model(
     """Run evaluations for a single model across all samples."""
     judge = get_judge(model_name)
     sem = asyncio.Semaphore(concurrency)
-    model_dir = CACHE_ROOT / safe_model_name(model_name)
+    model_dir = CACHE_ROOT / safe_model_name(model_name) / f"prompt_{prompt_cache_key}"
     model_dir.mkdir(parents=True, exist_ok=True)
 
     results = []
@@ -93,8 +145,9 @@ async def evaluate_model(
             while attempt < max_retries:
                 start = time.perf_counter()
                 try:
+                    evaluation_prompt = build_evaluation_prompt(prompt_template, sample["prompt_text"])
                     resp = await judge.call(
-                        prompt=prompt_template,
+                        prompt=evaluation_prompt,
                         image_bytes=image_bytes,
                         temperature=temperature,
                         response_format=STRICT_RESPONSE_FORMAT if use_response_format else None,
@@ -124,6 +177,7 @@ async def evaluate_model(
                         error_record = {
                             "diagram_id": sample["diagram_id"],
                             "model": model_name,
+                            "prompt_hash": prompt_cache_key,
                             "error": str(exc),
                             "raw_response": resp.text[:500],
                         }
@@ -134,6 +188,7 @@ async def evaluate_model(
             record = {
                 "diagram_id": sample["diagram_id"],
                 "model": model_name,
+                "prompt_hash": prompt_cache_key,
                 "elapsed_ms": elapsed_ms,
                 "tokens": {
                     "input_tokens": resp.input_tokens,
@@ -155,13 +210,18 @@ async def evaluate_model(
     return results
 
 
-def export_results(all_results: list[dict], output_root: Path) -> Path:
-    """Flatten results into a single CSV."""
+def export_results(all_results: list[dict], output_root: Path, *, run_tag: str) -> tuple[Path, Path]:
+    """Export per-run results to JSON and flattened CSV."""
     output_root.mkdir(parents=True, exist_ok=True)
-    date_str = datetime.now().strftime("%Y%m%d")
+
+    # Keep prompt hash internal for cache/versioning, but do not export it.
+    export_records = [{k: v for k, v in record.items() if k != "prompt_hash"} for record in all_results]
+
+    json_path = output_root / f"pedagogical_eval_{run_tag}.json"
+    json_path.write_text(json.dumps(export_records, indent=2), encoding="utf-8")
 
     rows = []
-    for record in all_results:
+    for record in export_records:
         rubric = record.get("rubric", {})
         tokens = record.get("tokens", {})
         row = {
@@ -174,22 +234,23 @@ def export_results(all_results: list[dict], output_root: Path) -> Path:
             "error": record.get("error"),
         }
         # Flatten rubric dimensions
-        for dim in ["coherence", "signaling", "spatial_contiguity", "segmenting", "appropriate_labeling"]:
+        for dim in RUBRIC_DIMENSIONS:
             dim_data = rubric.get(dim, {})
             row[f"{dim}_value"] = dim_data.get("value")
             row[f"{dim}_rationale"] = dim_data.get("rationale")
         rows.append(row)
 
     df = pd.DataFrame(rows)
-    csv_path = output_root / f"pedagogical_eval_{date_str}.csv"
+    csv_path = output_root / f"pedagogical_eval_{run_tag}.csv"
     df.to_csv(csv_path, index=False)
-    print(f"\nExported results to {csv_path}")
-    return csv_path
+    print(f"\nExported JSON results to {json_path}")
+    print(f"Exported CSV results to {csv_path}")
+    return json_path, csv_path
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--csv", type=Path, required=True, help="Input CSV with diagram samples")
+    parser.add_argument("--csv", type=Path, required=True, help="Input CSV or JSON with diagram samples")
     parser.add_argument("--models", nargs="+", required=True, help="Model names to evaluate")
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--concurrency", type=int, default=4)
@@ -201,6 +262,8 @@ def main():
         raise FileNotFoundError(f"Input CSV not found: {args.csv}")
 
     prompt_template = load_prompt()
+    prompt_cache_key = prompt_hash(prompt_template)
+    run_tag = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     samples = load_samples(args.csv, limit=args.limit)
 
     all_results = []
@@ -210,13 +273,14 @@ def main():
             model_name,
             samples,
             prompt_template,
+            prompt_cache_key,
             temperature=args.temperature,
             concurrency=args.concurrency,
             max_retries=args.max_retries,
         ))
         all_results.extend(results)
 
-    export_results(all_results, RESULTS_ROOT)
+    export_results(all_results, RESULTS_ROOT, run_tag=run_tag)
 
 
 if __name__ == "__main__":
