@@ -1,0 +1,64 @@
+{
+  "description": "Human rater judgments from Prolific teacher annotation study",
+  "raters": {
+    "A": {
+      "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
+      "n_rated": 250,
+      "duration_seconds": 15746.0
+    },
+    "B": {
+      "prolific_pid": "65e3d5847b3844081e1fb12a",
+      "n_rated": 250,
+      "duration_seconds": 16540.0
+    }
+  },
+  "dimensions": [
+    "coherence",
+    "signaling",
+    "label_accuracy",
+    "labeling"
+  ],
+  "response_options": {
+    "coherence": [
+      "Yes",
+      "No"
+    ],
+    "signaling": [
+      "Yes",
+      "No",
+      "N/A"
+    ],
+    "label_accuracy": [
+      "Yes",
+      "No",
+      "N/A"
+    ],
+    "labeling": [
+      "Yes",
+      "No",
+      "N/A"
+    ]
+  },
+  "shared_items": 50,
+  "total_unique_diagrams": 450,
+  "total_ratings": 500,
+  "inter_rater_agreement": {
+    "coherence": {
+      "raw_agreement": 0.9,
+      "cohens_kappa": 0.0,
+      "note": "Kappa paradox due to near-zero variance in Rater A"
+    },
+    "signaling": {
+      "raw_agreement": 0.587,
+      "cohens_kappa": 0.177
+    },
+    "label_accuracy": {
+      "raw_agreement": 0.735,
+      "cohens_kappa": 0.301
+    },
+    "labeling": {
+      "raw_agreement": 0.825,
+      "cohens_kappa": 0.576
+    }
+  }
+}
