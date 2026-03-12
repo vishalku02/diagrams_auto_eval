@@ -4,176 +4,40 @@
     "shared_diagrams": 50,
     "rater_a_total": 250,
     "rater_b_total": 250,
-    "rater_a_unique": 200,
-    "rater_b_unique": 200,
     "blanks_filled": 189,
-    "blanks_filled_breakdown": {
-      "N/A": 166,
-      "Yes": 22,
-      "No": 1
+    "qc_shared_adjudications": 55,
+    "qc_full_adjudications": 63,
+    "qc_full_breakdown": {
+      "keep_human": 12,
+      "agree_llm": 48,
+      "other": 3
     },
-    "qc_adjudications": 55,
-    "qc_breakdown": {
-      "agree_rater_a": 27,
-      "agree_rater_b": 19,
-      "other": 9
-    }
+    "qc_full_llm_agreement_rate": "76%"
   },
-  "dimensions": [
-    "coherence",
-    "signaling",
-    "label_accuracy",
-    "labeling"
-  ],
-  "original_inter_rater_50_shared": {
-    "coherence": {
-      "kappa": 0.0,
-      "agreement": "45/50",
-      "note": "kappa paradox"
-    },
-    "signaling": {
-      "kappa": 0.195,
-      "agreement": "29/50"
-    },
-    "label_accuracy": {
-      "kappa": 0.439,
-      "agreement": "35/50"
-    },
-    "labeling": {
-      "kappa": 0.46,
-      "agreement": "36/50"
-    }
-  },
-  "rater_vs_adjudicated_gold_50_shared": {
-    "rater_a": {
-      "coherence": {
-        "kappa": 0.0,
-        "agreement": "48/50"
-      },
-      "signaling": {
-        "kappa": 0.609,
-        "agreement": "39/50"
-      },
-      "label_accuracy": {
-        "kappa": 0.685,
-        "agreement": "41/50"
-      },
-      "labeling": {
-        "kappa": 0.805,
-        "agreement": "45/50"
-      }
-    },
-    "rater_b": {
-      "coherence": {
-        "kappa": 0.545,
-        "agreement": "47/50"
-      },
-      "signaling": {
-        "kappa": 0.51,
-        "agreement": "36/50"
-      },
-      "label_accuracy": {
-        "kappa": 0.707,
-        "agreement": "42/50"
-      },
-      "labeling": {
-        "kappa": 0.572,
-        "agreement": "39/50"
-      }
-    }
-  },
-  "llm_vs_adjudicated_gold_50_shared": {
+  "cohens_kappa_human_vs_llm_450": {
     "claude-sonnet-4-6": {
-      "coherence": {
-        "kappa": 0.145,
-        "agreement": "42/50"
-      },
-      "signaling": {
-        "kappa": 0.467,
-        "agreement": "34/50"
-      },
-      "label_accuracy": {
-        "kappa": 0.647,
-        "agreement": "40/50"
-      },
-      "labeling": {
-        "kappa": 0.551,
-        "agreement": "37/50"
-      }
+      "coherence": 0.165,
+      "signaling": 0.267,
+      "label_accuracy": 0.612,
+      "labeling": 0.383
     },
     "gpt-5.4": {
-      "coherence": {
-        "kappa": 0.059,
-        "agreement": "36/50"
-      },
-      "signaling": {
-        "kappa": 0.305,
-        "agreement": "26/50"
-      },
-      "label_accuracy": {
-        "kappa": 0.636,
-        "agreement": "39/50"
-      },
-      "labeling": {
-        "kappa": 0.476,
-        "agreement": "35/50"
-      }
+      "coherence": 0.149,
+      "signaling": 0.184,
+      "label_accuracy": 0.571,
+      "labeling": 0.396
     }
   },
-  "llm_vs_human_full_450": {
-    "claude-sonnet-4-6": {
-      "coherence": {
-        "kappa": 0.054,
-        "agreement": "369/450"
-      },
-      "signaling": {
-        "kappa": 0.216,
-        "agreement": "233/450"
-      },
-      "label_accuracy": {
-        "kappa": 0.547,
-        "agreement": "344/450"
-      },
-      "labeling": {
-        "kappa": 0.323,
-        "agreement": "276/450"
-      }
-    },
-    "gpt-5.4": {
-      "coherence": {
-        "kappa": 0.075,
-        "agreement": "341/450"
-      },
-      "signaling": {
-        "kappa": 0.144,
-        "agreement": "179/450"
-      },
-      "label_accuracy": {
-        "kappa": 0.509,
-        "agreement": "329/450"
-      },
-      "labeling": {
-        "kappa": 0.336,
-        "agreement": "288/450"
-      }
-    }
+  "cohens_kappa_llm_vs_llm_450": {
+    "coherence": 0.408,
+    "signaling": 0.532,
+    "label_accuracy": 0.794,
+    "labeling": 0.503
   },
-  "llm_vs_llm_450": {
-    "coherence": {
-      "kappa": 0.408,
-      "agreement": "366/450"
-    },
-    "signaling": {
-      "kappa": 0.532,
-      "agreement": "305/450"
-    },
-    "label_accuracy": {
-      "kappa": 0.794,
-      "agreement": "398/450"
-    },
-    "labeling": {
-      "kappa": 0.503,
-      "agreement": "315/450"
-    }
+  "fleiss_kappa_3_raters_450": {
+    "coherence": 0.244,
+    "signaling": 0.309,
+    "label_accuracy": 0.659,
+    "labeling": 0.419
   }
 }
