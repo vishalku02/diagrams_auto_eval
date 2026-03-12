@@ -1,15 +1,16 @@
 {
-  "description": "Human rater judgments from Prolific teacher annotation study",
-  "raters": {
-    "A": {
-      "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
-      "n_rated": 250,
-      "duration_seconds": 15746.0
-    },
-    "B": {
-      "prolific_pid": "65e3d5847b3844081e1fb12a",
-      "n_rated": 250,
-      "duration_seconds": 16540.0
+  "study_design": {
+    "total_diagrams": 450,
+    "shared_diagrams": 50,
+    "rater_a_total": 250,
+    "rater_b_total": 250,
+    "rater_a_unique": 200,
+    "rater_b_unique": 200,
+    "blanks_filled": 189,
+    "blanks_filled_breakdown": {
+      "N/A": 166,
+      "Yes": 22,
+      "No": 1
     }
   },
   "dimensions": [
@@ -18,47 +19,79 @@
     "label_accuracy",
     "labeling"
   ],
-  "response_options": {
-    "coherence": [
-      "Yes",
-      "No"
-    ],
-    "signaling": [
-      "Yes",
-      "No",
-      "N/A"
-    ],
-    "label_accuracy": [
-      "Yes",
-      "No",
-      "N/A"
-    ],
-    "labeling": [
-      "Yes",
-      "No",
-      "N/A"
-    ]
-  },
-  "shared_items": 50,
-  "total_unique_diagrams": 450,
-  "total_ratings": 500,
-  "inter_rater_agreement": {
+  "inter_rater_agreement_50_shared": {
     "coherence": {
+      "kappa": 0.0,
       "raw_agreement": 0.9,
-      "cohens_kappa": 0.0,
-      "note": "Kappa paradox due to near-zero variance in Rater A"
+      "note": "kappa paradox - Rater A 100% Yes"
     },
     "signaling": {
-      "raw_agreement": 0.587,
-      "cohens_kappa": 0.177
+      "kappa": 0.195,
+      "raw_agreement": 0.58
     },
     "label_accuracy": {
-      "raw_agreement": 0.735,
-      "cohens_kappa": 0.301
+      "kappa": 0.439,
+      "raw_agreement": 0.7
     },
     "labeling": {
-      "raw_agreement": 0.825,
-      "cohens_kappa": 0.576
+      "kappa": 0.46,
+      "raw_agreement": 0.72
+    }
+  },
+  "human_vs_llm_450": {
+    "claude-sonnet-4-6": {
+      "coherence": {
+        "kappa": 0.039,
+        "agreement": 0.82
+      },
+      "signaling": {
+        "kappa": 0.185,
+        "agreement": 0.5
+      },
+      "label_accuracy": {
+        "kappa": 0.523,
+        "agreement": 0.751
+      },
+      "labeling": {
+        "kappa": 0.313,
+        "agreement": 0.607
+      }
+    },
+    "gpt-5.4": {
+      "coherence": {
+        "kappa": 0.066,
+        "agreement": 0.758
+      },
+      "signaling": {
+        "kappa": 0.114,
+        "agreement": 0.378
+      },
+      "label_accuracy": {
+        "kappa": 0.477,
+        "agreement": 0.713
+      },
+      "labeling": {
+        "kappa": 0.335,
+        "agreement": 0.64
+      }
+    }
+  },
+  "llm_vs_llm_450": {
+    "coherence": {
+      "kappa": 0.408,
+      "agreement": 0.813
+    },
+    "signaling": {
+      "kappa": 0.532,
+      "agreement": 0.678
+    },
+    "label_accuracy": {
+      "kappa": 0.794,
+      "agreement": 0.884
+    },
+    "labeling": {
+      "kappa": 0.503,
+      "agreement": 0.7
     }
   }
 }
