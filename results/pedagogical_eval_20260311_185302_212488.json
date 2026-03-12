@@ -483,7 +483,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "All labels are placed accurately. The points C, P, and P' are clearly labeled next to their respective dots. The '60\u00b0' label is correctly positioned inside the angle, adjacent to the directional arc, unambiguously indicating the measure of the rotation.",
+        "rationale": "All labels are placed accurately. The points C, P, and P' are clearly labeled next to their respective dots. The '60°' label is correctly positioned inside the angle, adjacent to the directional arc, unambiguously indicating the measure of the rotation.",
         "value": "Yes"
       },
       "labeling": {
@@ -823,7 +823,7 @@
     },
     "rubric": {
       "coherence": {
-        "rationale": "The diagram perfectly aligns with the prompt, displaying a triangle with two known angles (65\u00b0 and 47\u00b0) and one unknown angle (?). It contains no extraneous decorations or irrelevant visual elements.",
+        "rationale": "The diagram perfectly aligns with the prompt, displaying a triangle with two known angles (65° and 47°) and one unknown angle (?). It contains no extraneous decorations or irrelevant visual elements.",
         "value": "Yes"
       },
       "signaling": {
@@ -831,7 +831,7 @@
         "value": "N/A"
       },
       "label_accuracy": {
-        "rationale": "The labels '65\u00b0', '47\u00b0', and '?' are placed accurately and unambiguously next to their corresponding interior angle arcs, making it perfectly clear which angle each label refers to.",
+        "rationale": "The labels '65°', '47°', and '?' are placed accurately and unambiguously next to their corresponding interior angle arcs, making it perfectly clear which angle each label refers to.",
         "value": "Yes"
       },
       "labeling": {
@@ -839,12 +839,6 @@
         "value": "Yes"
       }
     }
-  },
-  {
-    "diagram_id": "273",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing an object at line 10 column 21 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...\\n  \"label_accuracy\": {', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The diagram contains only lines intended to represent the requested 3D pentagonal prism. There are no extraneous decorations, unnecessary visual clutter, or redundant elements. While the geometric accuracy of the prism is flawed (missing a lateral edge and incorrect perspective/connections), it strictly attempts to fulfill the prompt without adding irrelevant content.\",\n    \"value\": \"Yes\"\n  },\n  \"signaling\": {\n    \"rationale\": \"The diagram uses solid "
   },
   {
     "diagram_id": "1029",
@@ -866,7 +860,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "Several labels and annotations are inaccurate. The cyan arrow intended to show rotation is mathematically incorrect, as it does not map a point to its proper 90-degree clockwise rotated position. Furthermore, there is a typo in the rotation label (\"90r CW\" instead of \"90\u00b0 CW\") and weird extraneous text (\": Or\") in the reflection label.",
+        "rationale": "Several labels and annotations are inaccurate. The cyan arrow intended to show rotation is mathematically incorrect, as it does not map a point to its proper 90-degree clockwise rotated position. Furthermore, there is a typo in the rotation label (\"90r CW\" instead of \"90° CW\") and weird extraneous text (\": Or\") in the reflection label.",
         "value": "No"
       },
       "labeling": {
@@ -895,11 +889,11 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "The '90\u00b0' text labels are accurately placed within each of the four quadrants to denote the measure of each angle. The right-angle square symbols are correctly positioned at the vertex.",
+        "rationale": "The '90°' text labels are accurately placed within each of the four quadrants to denote the measure of each angle. The right-angle square symbols are correctly positioned at the vertex.",
         "value": "Yes"
       },
       "labeling": {
-        "rationale": "The diagram effectively labels all four angles as '90\u00b0', directly addressing the prompt's specification to show 'four right angles'. The labeling is clear and not overly cluttered.",
+        "rationale": "The diagram effectively labels all four angles as '90°', directly addressing the prompt's specification to show 'four right angles'. The labeling is clear and not overly cluttered.",
         "value": "Yes"
       }
     }
@@ -934,12 +928,6 @@
     }
   },
   {
-    "diagram_id": "1996",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='Evaluate Dimensions:**\\n...ide and having the same', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": " Evaluate Dimensions:**\n\n    *   **Coherence (Alignment with Prompt):**\n        *   Prompt: \"rectangular prism net, showing 6 rectangles: two 4x3, two 4x2, two 3x2\"\n        *   Image contains 6 rectangles with the correct labels.\n        *   However, it is *not* a net. A net must be a single, continuous geometric figure that can be folded. This image shows two completely separate, disconnected pieces (a top group of 4, and a bottom group of 2).\n        *   Also, the geometry of the \"net\" is impo"
-  },
-  {
     "diagram_id": "2428",
     "model": "gemini-3.1-pro-preview",
     "elapsed_ms": 18729.8621670343,
@@ -959,7 +947,7 @@
         "value": "No"
       },
       "label_accuracy": {
-        "rationale": "There is a severe placement error: the equation '1 \u00f7 6 = 1/6' is placed directly on top of the '3/6' label and the center tick mark. This ambiguous and overlapping placement makes both the equation and the underlying fraction difficult to read.",
+        "rationale": "There is a severe placement error: the equation '1 ÷ 6 = 1/6' is placed directly on top of the '3/6' label and the center tick mark. This ambiguous and overlapping placement makes both the equation and the underlying fraction difficult to read.",
         "value": "No"
       },
       "labeling": {
@@ -988,7 +976,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "The labels are highly accurate and correctly positioned. The text 'Open Circle', the strict inequality symbols (> or <), and the phrase '(not included)' are correctly placed under the open hand visual. Conversely, 'Closed Circle', the inclusive inequality symbols (\u2265 or \u2264), and '(included)' are correctly placed under the closed fist visual.",
+        "rationale": "The labels are highly accurate and correctly positioned. The text 'Open Circle', the strict inequality symbols (> or <), and the phrase '(not included)' are correctly placed under the open hand visual. Conversely, 'Closed Circle', the inclusive inequality symbols (≥ or ≤), and '(included)' are correctly placed under the closed fist visual.",
         "value": "Yes"
       },
       "labeling": {
@@ -1249,11 +1237,11 @@
         "value": "No"
       },
       "label_accuracy": {
-        "rationale": "The text labels and annotations are placed accurately. The vertex labels (A, B, C, D, E, F) are next to their respective points, the '58\u00b0' labels are correctly placed inside the corresponding angles with arcs, and the '7 cm' label is positioned along side AB.",
+        "rationale": "The text labels and annotations are placed accurately. The vertex labels (A, B, C, D, E, F) are next to their respective points, the '58°' labels are correctly placed inside the corresponding angles with arcs, and the '7 cm' label is positioned along side AB.",
         "value": "Yes"
       },
       "labeling": {
-        "rationale": "The diagram successfully labels the essential elements requested by the prompt, including the vertices, the given side length (7 cm), and the given angle (58\u00b0). It also includes explicit text labels (e.g., 'A <-> D') to clearly state the corresponding parts, which is helpful given the failure of the visual arrows.",
+        "rationale": "The diagram successfully labels the essential elements requested by the prompt, including the vertices, the given side length (7 cm), and the given angle (58°). It also includes explicit text labels (e.g., 'A <-> D') to clearly state the corresponding parts, which is helpful given the failure of the visual arrows.",
         "value": "Yes"
       }
     }
@@ -1520,12 +1508,6 @@
     }
   },
   {
-    "diagram_id": "2645",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a value at line 9 column 4 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...   \"value\": \"N/A\"\\n  },', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"While the diagram is free of extraneous visual clutter, it does not accurately align with the prompt's requested dimensions. The prompt specifies that the second prism should be '3 cubes by 2 cubes by 4 cubes'. However, the diagram depicts the second (right) prism as being 3 cubes wide, 2 cubes high, and only 3 cubes deep.\",\n    \"value\": \"No\"\n  },\n  \"signaling\": {\n    \"rationale\": \"The diagram is a simple structural representation of attached prisms. "
-  },
-  {
     "diagram_id": "4336",
     "model": "gemini-3.1-pro-preview",
     "elapsed_ms": 13104.145082994364,
@@ -1729,12 +1711,6 @@
     }
   },
   {
-    "diagram_id": "427",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a string at line 7 column 318 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...he primary triangle (A,', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The diagram perfectly aligns with the prompt. It displays a coordinate plane, the specific right triangle ABC with vertices at (0,0), (3,0), and (0,4), and three rotated copies of this triangle forming a pinwheel pattern around the origin. There are no extraneous or decorative elements.\",\n    \"value\": \"Yes\"\n  },\n  \"signaling\": {\n    \"rationale\": \"The diagram uses distinct colors (blue, red, green, orange) to differentiate the four triangles, which eff"
-  },
-  {
     "diagram_id": "2712",
     "model": "gemini-3.1-pro-preview",
     "elapsed_ms": 19076.148084015585,
@@ -1754,7 +1730,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "The label '8' for the height of the scaled rectangle is misplaced, floating near the tip of the green arrow rather than being centered on the left edge of the red rectangle. Furthermore, there are significant text encoding errors ('\u0152' instead of 'x' or a multiplication sign) in the labels '3 \u0152 4', '6 \u0152 8', and '\u01522', making the mathematical notation inaccurate.",
+        "rationale": "The label '8' for the height of the scaled rectangle is misplaced, floating near the tip of the green arrow rather than being centered on the left edge of the red rectangle. Furthermore, there are significant text encoding errors ('Œ' instead of 'x' or a multiplication sign) in the labels '3 Œ 4', '6 Œ 8', and 'Œ2', making the mathematical notation inaccurate.",
         "value": "No"
       },
       "labeling": {
@@ -2170,12 +2146,6 @@
     }
   },
   {
-    "diagram_id": "4464",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='The diagram shows a comp...t dotted height), and \"', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "The diagram shows a composite 3D figure, likely intended to represent the two prisms described in the prompt. However, the drawing is highly confusing and poorly executed.\n\nLet's break down the interpretation:\n1.  **Back/Top Prism**: The labels \"4 cm\" (top width), \"1 cm\" (top depth), and \"3 cm\" (right height) suggest a prism of 4x1x3. This roughly corresponds to the \"3 cm \u00d7 4 cm \u00d7 1 cm top prism\" from the prompt, although it's drawn as the *back* prism rather than just a *top* prism.\n2.  **Front"
-  },
-  {
     "diagram_id": "1157",
     "model": "gemini-3.1-pro-preview",
     "elapsed_ms": 13225.314915995114,
@@ -2187,7 +2157,7 @@
     },
     "rubric": {
       "coherence": {
-        "rationale": "The diagram perfectly aligns with the prompt. It displays a triangle with two angles labeled 60\u00b0 and 30\u00b0, and one side labeled 7 cm. There are no extraneous decorations or irrelevant visual elements.",
+        "rationale": "The diagram perfectly aligns with the prompt. It displays a triangle with two angles labeled 60° and 30°, and one side labeled 7 cm. There are no extraneous decorations or irrelevant visual elements.",
         "value": "Yes"
       },
       "signaling": {
@@ -2195,7 +2165,7 @@
         "value": "N/A"
       },
       "label_accuracy": {
-        "rationale": "The labels are placed accurately. The '60\u00b0' and '30\u00b0' labels are positioned correctly next to their respective angle arcs at the vertices, and the '7 cm' label is centered directly below the bottom side it describes.",
+        "rationale": "The labels are placed accurately. The '60°' and '30°' labels are positioned correctly next to their respective angle arcs at the vertices, and the '7 cm' label is centered directly below the bottom side it describes.",
         "value": "Yes"
       },
       "labeling": {
@@ -2597,7 +2567,7 @@
         "value": "Yes"
       },
       "signaling": {
-        "rationale": "The diagram uses standard geometric visual cues\u2014specifically a dashed line and a right-angle square symbol\u2014to clearly indicate the height (altitude) and distinguish it from the solid lines representing the sides of the parallelogram.",
+        "rationale": "The diagram uses standard geometric visual cues—specifically a dashed line and a right-angle square symbol—to clearly indicate the height (altitude) and distinguish it from the solid lines representing the sides of the parallelogram.",
         "value": "Yes"
       },
       "label_accuracy": {
@@ -2667,12 +2637,6 @@
         "value": "Yes"
       }
     }
-  },
-  {
-    "diagram_id": "3902",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a string at line 7 column 11 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...naling\": {\\n    \"ration', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The diagram attempts to depict the requested 4x3x2 rectangular prism partially filled with cubes, but it contains significant inaccuracies. The prompt specifies '1 incomplete layer with 6 cubes'. Assuming the layers are horizontal (4x2 = 8 cubes per full layer), the top layer in the image shows 7 cubes (4 in the back row, 3 in the front row), not 6. Additionally, there is a rendering error on the bottom-right corner of the front face, which is left wh"
   },
   {
     "diagram_id": "901",
@@ -2897,7 +2861,7 @@
         "value": "N/A"
       },
       "label_accuracy": {
-        "rationale": "The 125\u00b0 label is placed inaccurately. Its angle arcs are floating in space above vertex C and do not connect to any lines, making it impossible to determine which angle is being measured. Additionally, the prompt specified 'exterior angle D=125\u00b0', but the 125\u00b0 label is placed near C, and there is no angle to measure at point D.",
+        "rationale": "The 125° label is placed inaccurately. Its angle arcs are floating in space above vertex C and do not connect to any lines, making it impossible to determine which angle is being measured. Additionally, the prompt specified 'exterior angle D=125°', but the 125° label is placed near C, and there is no angle to measure at point D.",
         "value": "No"
       },
       "labeling": {
@@ -3139,12 +3103,6 @@
     }
   },
   {
-    "diagram_id": "2",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a value at line 9 column 4 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...   \"value\": \"Yes\"\\n  },', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The prompt specifically requests a \\\"3D triangular prism.\\\" However, the generated image depicts a geometrically impossible and nonsensical polyhedron. The solid and dotted lines contradict each other, failing to form the 2 triangular bases and 3 rectangular faces of a standard triangular prism. Because the central object is fundamentally incorrect and does not align with the prompt's request, it lacks coherence.\",\n    \"value\": \"No\"\n  },\n  \"signaling\""
-  },
-  {
     "diagram_id": "3987",
     "model": "gemini-3.1-pro-preview",
     "elapsed_ms": 15805.228499986697,
@@ -3172,12 +3130,6 @@
         "value": "Yes"
       }
     }
-  },
-  {
-    "diagram_id": "3770",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a string at line 3 column 653 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...ot accurately represent', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "{\n  \"coherence\": {\n    \"rationale\": \"The prompt asks for a 'rectangular prism net' with dimensions 10 mm by 6 mm by 4 mm. The diagram shows a shape that resembles a net, but it is drawn incorrectly. The thick black lines create overlapping regions rather than a proper unfolded 2D net. For example, there are internal lines that do not correspond to valid fold lines for a single continuous net, making it look like three overlapping rectangles. Furthermore, the shape does not contain the correct si"
   },
   {
     "diagram_id": "3348",
@@ -3249,7 +3201,7 @@
     },
     "rubric": {
       "coherence": {
-        "rationale": "The diagram perfectly aligns with the prompt 'division diagram, 5 \u00f7 3'. It displays the standard long division setup and calculation for this specific problem, containing only the relevant mathematical elements with no extraneous decorations.",
+        "rationale": "The diagram perfectly aligns with the prompt 'division diagram, 5 ÷ 3'. It displays the standard long division setup and calculation for this specific problem, containing only the relevant mathematical elements with no extraneous decorations.",
         "value": "Yes"
       },
       "signaling": {
@@ -3547,7 +3499,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "The mathematical labels and annotations are placed accurately and correctly represent the math. The number line for x > 4 correctly uses an open circle at 4 and points right. The number line for x \u2264 4 correctly uses a closed circle at 4 and points left. The number line for x > -3 correctly uses an open circle at -3 and points right.",
+        "rationale": "The mathematical labels and annotations are placed accurately and correctly represent the math. The number line for x > 4 correctly uses an open circle at 4 and points right. The number line for x ≤ 4 correctly uses a closed circle at 4 and points left. The number line for x > -3 correctly uses an open circle at -3 and points right.",
         "value": "Yes"
       },
       "labeling": {
@@ -3866,7 +3818,7 @@
         "value": "No"
       },
       "label_accuracy": {
-        "rationale": "The dimension labels ('4 units', '6 units') are floating far away from the edges they are meant to measure, lacking clear alignment or indicator lines to connect them to specific parts of the shape. Furthermore, the text labels for the top and bottom sections contain garbled characters ('6\u01524\u01523') instead of proper mathematical symbols.",
+        "rationale": "The dimension labels ('4 units', '6 units') are floating far away from the edges they are meant to measure, lacking clear alignment or indicator lines to connect them to specific parts of the shape. Furthermore, the text labels for the top and bottom sections contain garbled characters ('6Œ4Œ3') instead of proper mathematical symbols.",
         "value": "No"
       },
       "labeling": {
@@ -3903,12 +3855,6 @@
         "value": "N/A"
       }
     }
-  },
-  {
-    "diagram_id": "2608",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a value at line 7 column 358 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ...rresponding vertices.\",', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The diagram perfectly aligns with the prompt. It features a coordinate grid, a pre-image triangle (blue), its reflected image (red), and a clearly marked vertical line of reflection. There are no extraneous or decorative elements that distract from the mathematical concept.\",\n    \"value\": \"Yes\"\n  },\n  \"signaling\": {\n    \"rationale\": \"The diagram uses effective visual cues: distinct colors (blue and red) differentiate the pre-image from the image, a gr"
   },
   {
     "diagram_id": "3706",
@@ -3988,7 +3934,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "There is a significant typographical/rendering error in the label for the original shape, which reads 'Original (2 \u0152 3)' instead of '2 x 3'. This gibberish character makes the label inaccurate and confusing for a learner. Additionally, several labels awkwardly overlap the top borders of the rectangles.",
+        "rationale": "There is a significant typographical/rendering error in the label for the original shape, which reads 'Original (2 Œ 3)' instead of '2 x 3'. This gibberish character makes the label inaccurate and confusing for a learner. Additionally, several labels awkwardly overlap the top borders of the rectangles.",
         "value": "No"
       },
       "labeling": {
@@ -4187,7 +4133,7 @@
         "value": "Yes"
       },
       "signaling": {
-        "rationale": "The diagram uses a thick, bold line and a solid black dot to clearly distinguish the solution set (x \u2264 -2) from the rest of the thinner number line, effectively guiding the learner's attention to the key mathematical information.",
+        "rationale": "The diagram uses a thick, bold line and a solid black dot to clearly distinguish the solution set (x ≤ -2) from the rest of the thinner number line, effectively guiding the learner's attention to the key mathematical information.",
         "value": "Yes"
       },
       "label_accuracy": {
@@ -4357,7 +4303,7 @@
     },
     "rubric": {
       "coherence": {
-        "rationale": "The diagram perfectly aligns with the prompt. It displays a tape diagram representing 4 sandwiches, divided into 3 equal parts, and includes the requested equation '4 \u00f7 3 = 4/3'. There are no extraneous decorations or irrelevant elements.",
+        "rationale": "The diagram perfectly aligns with the prompt. It displays a tape diagram representing 4 sandwiches, divided into 3 equal parts, and includes the requested equation '4 ÷ 3 = 4/3'. There are no extraneous decorations or irrelevant elements.",
         "value": "Yes"
       },
       "signaling": {
@@ -4369,7 +4315,7 @@
         "value": "Yes"
       },
       "labeling": {
-        "rationale": "The diagram contains exactly the right amount of labeling. It labels the whole ('4 sandwiches'), the value of each divided part ('4/3'), and the summarizing equation ('4 \u00f7 3 = 4/3'). It is neither missing essential information nor cluttered with unnecessary text.",
+        "rationale": "The diagram contains exactly the right amount of labeling. It labels the whole ('4 sandwiches'), the value of each divided part ('4/3'), and the summarizing equation ('4 ÷ 3 = 4/3'). It is neither missing essential information nor cluttered with unnecessary text.",
         "value": "Yes"
       }
     }
@@ -4618,7 +4564,7 @@
     },
     "rubric": {
       "coherence": {
-        "rationale": "The diagram perfectly matches the prompt, showing triangle RST, a transversal line through points U and V, and the specified angles (45\u00b0 and 60\u00b0). There are no extraneous or decorative elements.",
+        "rationale": "The diagram perfectly matches the prompt, showing triangle RST, a transversal line through points U and V, and the specified angles (45° and 60°). There are no extraneous or decorative elements.",
         "value": "Yes"
       },
       "signaling": {
@@ -4626,7 +4572,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "All labels are accurately placed. The vertex labels (R, S, T) and intersection points (U, V) are next to their corresponding dots. The angle measures (45\u00b0 and 60\u00b0) are correctly positioned within the appropriate vertices with standard angle arcs.",
+        "rationale": "All labels are accurately placed. The vertex labels (R, S, T) and intersection points (U, V) are next to their corresponding dots. The angle measures (45° and 60°) are correctly positioned within the appropriate vertices with standard angle arcs.",
         "value": "Yes"
       },
       "labeling": {
@@ -5032,7 +4978,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "There is a significant text rendering error in all of the labels: the multiplication symbol 'x' has been incorrectly rendered as the character '\u0152' (e.g., 'Original 2\u01523' instead of 'Original 2x3'). This makes the mathematical notation inaccurate and confusing.",
+        "rationale": "There is a significant text rendering error in all of the labels: the multiplication symbol 'x' has been incorrectly rendered as the character 'Œ' (e.g., 'Original 2Œ3' instead of 'Original 2x3'). This makes the mathematical notation inaccurate and confusing.",
         "value": "No"
       },
       "labeling": {
@@ -5098,12 +5044,6 @@
         "value": "N/A"
       }
     }
-  },
-  {
-    "diagram_id": "717",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a string at line 7 column 297 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ... to guide the learner\\'', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The diagram attempts to show the original rectangle and its reflection, but it is mathematically incorrect. The reflected rectangle (which should have vertices at (3,-1), (3,-4), (-2,-4), (-2,-1)) is missing its left vertical side at x=-2. Therefore, it does not accurately represent the prompt.\",\n    \"value\": \"No\"\n  },\n  \"signaling\": {\n    \"rationale\": \"The diagram uses blue and red colors, but they do not clearly distinguish the original rectangle fr"
   },
   {
     "diagram_id": "4917",
@@ -5676,7 +5616,7 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "The labels for lines m, n, and t are placed correctly next to their respective lines. The angle label is placed accurately next to the angle arc. Furthermore, the angle marked is visually obtuse, which correctly corresponds to the 110\u00b0 value. While the text formatting of '1' and '110\u00b0' is slightly merged, it is placed on the correct element.",
+        "rationale": "The labels for lines m, n, and t are placed correctly next to their respective lines. The angle label is placed accurately next to the angle arc. Furthermore, the angle marked is visually obtuse, which correctly corresponds to the 110° value. While the text formatting of '1' and '110°' is slightly merged, it is placed on the correct element.",
         "value": "Yes"
       },
       "labeling": {
@@ -5713,12 +5653,6 @@
         "value": "Yes"
       }
     }
-  },
-  {
-    "diagram_id": "3952",
-    "model": "gemini-3.1-pro-preview",
-    "error": "1 validation error for PedagogicalJudgeOutput\n  Invalid JSON: EOF while parsing a string at line 11 column 97 [type=json_invalid, input_value='{\\n  \"coherence\": {\\n   ... The x-axis labels (35,', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
-    "raw_response": "```json\n{\n  \"coherence\": {\n    \"rationale\": \"The diagram contains only relevant visual elements needed to represent a histogram. It is free of extraneous decorations, 3D effects, or distracting backgrounds, focusing entirely on the mathematical data requested in the prompt.\",\n    \"value\": \"Yes\"\n  },\n  \"signaling\": {\n    \"rationale\": \"The diagram is a simple, standard histogram showing a general distribution. There is no specific key information or single data point that requires highlighting or "
   },
   {
     "diagram_id": "1877",
@@ -6088,11 +6022,11 @@
         "value": "Yes"
       },
       "label_accuracy": {
-        "rationale": "The diagram contains a severe pedagogical flaw regarding accuracy: the intersecting lines are drawn perfectly perpendicular to each other (forming 90\u00b0 angles), but they are labeled as 55\u00b0 (an acute angle) and 125\u00b0 (an obtuse angle). Placing acute and obtuse labels on visually right angles is highly misleading and would confuse a learner.",
+        "rationale": "The diagram contains a severe pedagogical flaw regarding accuracy: the intersecting lines are drawn perfectly perpendicular to each other (forming 90° angles), but they are labeled as 55° (an acute angle) and 125° (an obtuse angle). Placing acute and obtuse labels on visually right angles is highly misleading and would confuse a learner.",
         "value": "No"
       },
       "labeling": {
-        "rationale": "The diagram includes exactly the labels requested by the prompt (55\u00b0 and 125\u00b0) without any extraneous or distracting text.",
+        "rationale": "The diagram includes exactly the labels requested by the prompt (55° and 125°) without any extraneous or distracting text.",
         "value": "Yes"
       }
     }

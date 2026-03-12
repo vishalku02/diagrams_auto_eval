@@ -10,6 +10,7 @@ import argparse
 import asyncio
 import hashlib
 import json
+import re
 import time
 from datetime import datetime
 from pathlib import Path
@@ -100,14 +101,71 @@ def load_samples(data_path: Path, limit: int = 0) -> list[dict]:
     return samples
 
 
-def build_evaluation_prompt(prompt_template: str, sample_prompt: str) -> str:
-    if not sample_prompt:
-        return prompt_template
-    return (
-        f"{prompt_template}\n\n"
-        "## Diagram Prompt\n"
-        f"{sample_prompt}\n"
-    )
+def build_evaluation_prompt(prompt_template: str, sample_prompt: str, *, strict_json: bool = False) -> str:
+    prompt = prompt_template
+    if sample_prompt:
+        prompt = (
+            f"{prompt}\n\n"
+            "## Diagram Prompt\n"
+            f"{sample_prompt}\n"
+        )
+    if strict_json:
+        prompt = (
+            f"{prompt}\n\n"
+            "## Response Requirements\n"
+            "- Output must be exactly one valid JSON object.\n"
+            "- Do not include markdown, code fences, or any leading/trailing commentary.\n"
+            "- Keep each rationale concise (max 2 sentences).\n"
+        )
+    return prompt
+
+
+def _json_candidates(text: str) -> list[str]:
+    """Generate possible JSON snippets from raw model text."""
+    stripped = text.strip()
+    if not stripped:
+        return []
+
+    seen: set[str] = set()
+    candidates: list[str] = []
+
+    def add(candidate: str):
+        normalized = candidate.strip()
+        if normalized and normalized not in seen:
+            seen.add(normalized)
+            candidates.append(normalized)
+
+    add(stripped)
+
+    fenced_blocks = re.findall(r"```(?:json)?\s*([\s\S]*?)```", stripped, flags=re.IGNORECASE)
+    for block in fenced_blocks:
+        add(block)
+
+    if stripped.startswith("```"):
+        body = stripped.split("\n", 1)
+        if len(body) == 2:
+            add(body[1].rsplit("```", 1)[0])
+
+    first_brace = stripped.find("{")
+    last_brace = stripped.rfind("}")
+    if first_brace != -1 and last_brace > first_brace:
+        add(stripped[first_brace:last_brace + 1])
+
+    return candidates
+
+
+def parse_judge_output(raw_text: str) -> tuple[Optional[PedagogicalJudgeOutput], Optional[Exception]]:
+    """Parse judge output by trying a few JSON extraction strategies."""
+    last_error: Optional[Exception] = None
+    for candidate in _json_candidates(raw_text):
+        try:
+            return PedagogicalJudgeOutput.model_validate_json(candidate), None
+        except (ValidationError, json.JSONDecodeError) as exc:
+            last_error = exc
+
+    if last_error is None:
+        last_error = ValueError("Empty or non-JSON response from model.")
+    return None, last_error
 
 
 async def evaluate_model(
@@ -128,8 +186,8 @@ async def evaluate_model(
 
     results = []
     provider = detect_provider(model_name)
-    # Only OpenAI supports strict JSON response_format natively
-    use_response_format = provider == "openai"
+    # OpenAI supports strict JSON schema natively; Gemini can use JSON mode + schema hints.
+    use_response_format = provider in {"openai", "google"}
 
     async def evaluate_one(sample: dict) -> Optional[dict]:
         cache_path = model_dir / f"diagram_{sample['diagram_id']}.json"
@@ -145,7 +203,11 @@ async def evaluate_model(
             while attempt < max_retries:
                 start = time.perf_counter()
                 try:
-                    evaluation_prompt = build_evaluation_prompt(prompt_template, sample["prompt_text"])
+                    evaluation_prompt = build_evaluation_prompt(
+                        prompt_template,
+                        sample["prompt_text"],
+                        strict_json=attempt > 0,
+                    )
                     resp = await judge.call(
                         prompt=evaluation_prompt,
                         image_bytes=image_bytes,
@@ -162,28 +224,30 @@ async def evaluate_model(
 
                 elapsed_ms = (time.perf_counter() - start) * 1000.0
 
-                # Try to parse structured output
-                try:
-                    # Extract JSON from response (may be wrapped in markdown)
-                    text = resp.text.strip()
-                    if text.startswith("```"):
-                        text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
-                    structured = PedagogicalJudgeOutput.model_validate_json(text)
+                structured, parse_error = parse_judge_output(resp.text)
+                if structured is not None:
                     break
-                except (ValidationError, json.JSONDecodeError) as exc:
-                    attempt += 1
-                    if attempt >= max_retries:
-                        print(f"  Parse error for diagram {sample['diagram_id']} ({model_name}): {exc}")
-                        error_record = {
-                            "diagram_id": sample["diagram_id"],
-                            "model": model_name,
-                            "prompt_hash": prompt_cache_key,
-                            "error": str(exc),
-                            "raw_response": resp.text[:500],
-                        }
-                        cache_path.write_text(json.dumps(error_record, indent=2))
-                        return error_record
-                    continue
+
+                attempt += 1
+                if attempt >= max_retries:
+                    print(f"  Parse error for diagram {sample['diagram_id']} ({model_name}): {parse_error}")
+                    error_record = {
+                        "diagram_id": sample["diagram_id"],
+                        "model": model_name,
+                        "prompt_hash": prompt_cache_key,
+                        "elapsed_ms": elapsed_ms,
+                        "tokens": {
+                            "input_tokens": resp.input_tokens,
+                            "output_tokens": resp.output_tokens,
+                            "cached_tokens": resp.cached_tokens,
+                            "total_tokens": resp.total_tokens,
+                        },
+                        "error": str(parse_error) if parse_error else "Unspecified parse error",
+                        "raw_response": resp.text,
+                    }
+                    cache_path.write_text(json.dumps(error_record, indent=2))
+                    return error_record
+                await asyncio.sleep(2 ** attempt)
 
             record = {
                 "diagram_id": sample["diagram_id"],

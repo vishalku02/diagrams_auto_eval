@@ -108,6 +108,33 @@ def _openai_response_text_format(response_format: Optional[dict]) -> Optional[di
     }
 
 
+def _google_generation_config(
+    *,
+    temperature: float,
+    max_tokens: int,
+    response_format: Optional[dict],
+) -> dict[str, Any]:
+    config: dict[str, Any] = {
+        "temperature": temperature,
+        "max_output_tokens": max_tokens,
+    }
+    if not response_format:
+        return config
+    if response_format.get("type") != "json_schema":
+        return config
+    schema_block = response_format.get("json_schema")
+    if not isinstance(schema_block, dict):
+        return config
+    schema = schema_block.get("schema")
+    if not isinstance(schema, dict):
+        return config
+
+    # Gemini supports JSON mode with an optional schema hint.
+    config["response_mime_type"] = "application/json"
+    config["response_schema"] = schema
+    return config
+
+
 def _extract_openai_output_text(resp: Any) -> str:
     output_text = getattr(resp, "output_text", None)
     if isinstance(output_text, str):
@@ -238,7 +265,6 @@ class GoogleJudge(BaseJudge):
 
     async def call(self, *, prompt, image_bytes=None, image_media_type="image/png",
                    temperature=0.0, max_tokens=4096, response_format=None) -> JudgeResponse:
-        import google.generativeai as genai
         from PIL import Image
         import io
 
@@ -248,17 +274,32 @@ class GoogleJudge(BaseJudge):
             parts.append(img)
         parts.append(prompt)
 
-        def _sync_call():
-            return self._model.generate_content(
-                parts,
-                generation_config=genai.types.GenerationConfig(
-                    temperature=temperature,
-                    max_output_tokens=max_tokens,
-                ),
-            )
+        generation_config = _google_generation_config(
+            temperature=temperature,
+            max_tokens=max_tokens,
+            response_format=response_format,
+        )
 
-        resp = await asyncio.to_thread(_sync_call)
-        text = resp.text or ""
+        def _sync_call(config: dict[str, Any]):
+            return self._model.generate_content(parts, generation_config=config)
+
+        try:
+            resp = await asyncio.to_thread(_sync_call, generation_config)
+        except Exception:
+            # Older SDK versions may not accept response_schema/response_mime_type.
+            if "response_schema" in generation_config or "response_mime_type" in generation_config:
+                fallback_config = {
+                    "temperature": temperature,
+                    "max_output_tokens": max_tokens,
+                }
+                resp = await asyncio.to_thread(_sync_call, fallback_config)
+            else:
+                raise
+
+        try:
+            text = resp.text or ""
+        except Exception:
+            text = ""
         usage_meta = getattr(resp, "usage_metadata", None)
 
         return JudgeResponse(
