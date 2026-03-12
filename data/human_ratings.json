@@ -51,7 +51,7 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "Yes",
-    "label_accuracy": "No",
+    "label_accuracy": "N/A",
     "labeling": "No",
     "comment": "The diagram could have had a number labelling on the sides"
   },
@@ -275,7 +275,7 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "No",
-    "label_accuracy": "No",
+    "label_accuracy": "N/A",
     "labeling": "No",
     "comment": null
   },
@@ -302,7 +302,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "N/A",
     "labeling": "N/A",
     "comment": null
@@ -343,9 +343,9 @@
     "rater": "A",
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
-    "coherence": "Yes",
+    "coherence": "No",
     "signaling": "Yes",
-    "label_accuracy": "Yes",
+    "label_accuracy": "No",
     "labeling": "Yes",
     "comment": null
   },
@@ -442,7 +442,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "N/A",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -847,10 +847,10 @@
     "rater": "A",
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
-    "coherence": "Yes",
+    "coherence": "No",
     "signaling": "Yes",
-    "label_accuracy": "Yes",
-    "labeling": "Yes",
+    "label_accuracy": "No",
+    "labeling": "No",
     "comment": null
   },
   {
@@ -932,7 +932,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "N/A",
     "labeling": "N/A",
     "comment": null
@@ -1031,8 +1031,8 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "No",
-    "label_accuracy": "No",
-    "labeling": "No",
+    "label_accuracy": "Yes",
+    "labeling": "Yes",
     "comment": null
   },
   {
@@ -1143,7 +1143,7 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "Yes",
-    "label_accuracy": "No",
+    "label_accuracy": "N/A",
     "labeling": "No",
     "comment": null
   },
@@ -1226,7 +1226,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "N/A",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -1520,7 +1520,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "N/A",
     "label_accuracy": "No",
     "labeling": "Yes",
     "comment": null
@@ -1590,9 +1590,9 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "N/A",
     "label_accuracy": "N/A",
-    "labeling": "N/A",
+    "labeling": "No",
     "comment": null
   },
   {
@@ -2094,7 +2094,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -2375,8 +2375,8 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "No",
-    "label_accuracy": "Yes",
-    "labeling": "Yes",
+    "label_accuracy": "N/A",
+    "labeling": "No",
     "comment": null
   },
   {
@@ -2570,7 +2570,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "N/A",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -2585,7 +2585,7 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "Yes",
-    "label_accuracy": "No",
+    "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
   },
@@ -2654,8 +2654,8 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
-    "label_accuracy": "No",
+    "signaling": "No",
+    "label_accuracy": "N/A",
     "labeling": "No",
     "comment": null
   },
@@ -2710,7 +2710,7 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "No",
     "labeling": "No",
     "comment": null
@@ -3396,9 +3396,9 @@
     "prolific_pid": "67e4f6897a0f6eb9b06e7c47",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "N/A",
     "label_accuracy": "N/A",
-    "labeling": "N/A",
+    "labeling": "No",
     "comment": null
   },
   {
@@ -3551,7 +3551,7 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "Yes",
-    "label_accuracy": "Yes",
+    "label_accuracy": "N/A",
     "labeling": "No",
     "comment": null
   },
@@ -3775,8 +3775,8 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "No",
-    "label_accuracy": "Yes",
-    "labeling": "Yes",
+    "label_accuracy": "N/A",
+    "labeling": "No",
     "comment": null
   },
   {
@@ -3803,8 +3803,8 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "No",
-    "label_accuracy": "Yes",
-    "labeling": "Yes",
+    "label_accuracy": "N/A",
+    "labeling": "N/A",
     "comment": null
   },
   {
@@ -3984,8 +3984,8 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
-    "label_accuracy": "No",
+    "signaling": "N/A",
+    "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
   },
@@ -4012,7 +4012,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -4447,8 +4447,8 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "No",
-    "label_accuracy": "Yes",
-    "labeling": "Yes",
+    "label_accuracy": "N/A",
+    "labeling": "N/A",
     "comment": null
   },
   {
@@ -4530,7 +4530,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -4588,7 +4588,7 @@
     "coherence": "Yes",
     "signaling": "Yes",
     "label_accuracy": "N/A",
-    "labeling": "No",
+    "labeling": "N/A",
     "comment": null
   },
   {
@@ -4615,7 +4615,7 @@
     "is_shared": true,
     "coherence": "Yes",
     "signaling": "Yes",
-    "label_accuracy": "Yes",
+    "label_accuracy": "No",
     "labeling": "Yes",
     "comment": null
   },
@@ -4698,7 +4698,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "N/A",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -4726,9 +4726,9 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
-    "label_accuracy": "No",
-    "labeling": "No",
+    "signaling": "Yes",
+    "label_accuracy": "Yes",
+    "labeling": "Yes",
     "comment": null
   },
   {
@@ -4922,7 +4922,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "Yes",
     "label_accuracy": "No",
     "labeling": "No",
     "comment": null
@@ -4936,8 +4936,8 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
-    "label_accuracy": "Yes",
+    "signaling": "N/A",
+    "label_accuracy": "No",
     "labeling": "Yes",
     "comment": null
   },
@@ -4950,7 +4950,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -4978,7 +4978,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "N/A",
     "label_accuracy": "N/A",
     "labeling": "No",
     "comment": null
@@ -5076,7 +5076,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -5188,7 +5188,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "Yes",
     "label_accuracy": "No",
     "labeling": "No",
     "comment": null
@@ -5243,10 +5243,10 @@
     "rater": "B",
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
-    "coherence": "No",
+    "coherence": "Yes",
     "signaling": "Yes",
     "label_accuracy": "Yes",
-    "labeling": "No",
+    "labeling": "Yes",
     "comment": null
   },
   {
@@ -5705,10 +5705,10 @@
     "rater": "B",
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
-    "coherence": "No",
+    "coherence": "Yes",
     "signaling": "No",
     "label_accuracy": "Yes",
-    "labeling": "No",
+    "labeling": "Yes",
     "comment": null
   },
   {
@@ -5862,7 +5862,7 @@
     "coherence": "Yes",
     "signaling": "No",
     "label_accuracy": "N/A",
-    "labeling": "N/A",
+    "labeling": "No",
     "comment": null
   },
   {
@@ -6111,10 +6111,10 @@
     "rater": "B",
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
-    "coherence": "No",
+    "coherence": "Yes",
     "signaling": "N/A",
     "label_accuracy": "Yes",
-    "labeling": "No",
+    "labeling": "Yes",
     "comment": null
   },
   {
@@ -6126,7 +6126,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "Yes",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -6336,7 +6336,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "No",
+    "signaling": "Yes",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -6630,7 +6630,7 @@
     "prolific_pid": "65e3d5847b3844081e1fb12a",
     "is_shared": true,
     "coherence": "Yes",
-    "signaling": "Yes",
+    "signaling": "No",
     "label_accuracy": "Yes",
     "labeling": "Yes",
     "comment": null
@@ -6758,7 +6758,7 @@
     "coherence": "Yes",
     "signaling": "No",
     "label_accuracy": "Yes",
-    "labeling": "No",
+    "labeling": "Yes",
     "comment": null
   },
   {
@@ -6856,7 +6856,7 @@
     "coherence": "Yes",
     "signaling": "N/A",
     "label_accuracy": "N/A",
-    "labeling": "Yes",
+    "labeling": "No",
     "comment": null
   },
   {
