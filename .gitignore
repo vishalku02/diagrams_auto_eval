@@ -1,7 +1,9 @@
-# Data (large CSV - don't commit)
-*.csv
+# Data (large source CSV - don't commit)
 Coteach Visuals Data*.csv
 !results/*.csv
+
+# Allow comparison and analysis CSVs
+!data/comparison_*.csv
 
 # Results cache (generated at runtime)
 results/cache/

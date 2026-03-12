@@ -1,0 +1,43 @@
+{
+  "study_design": {
+    "total_diagrams": 450,
+    "shared_diagrams": 50,
+    "rater_a_total": 250,
+    "rater_b_total": 250,
+    "blanks_filled": 189,
+    "qc_shared_adjudications": 55,
+    "qc_full_adjudications": 63,
+    "qc_full_breakdown": {
+      "keep_human": 12,
+      "agree_llm": 48,
+      "other": 3
+    },
+    "qc_full_llm_agreement_rate": "76%"
+  },
+  "cohens_kappa_human_vs_llm_450": {
+    "claude-sonnet-4-6": {
+      "coherence": 0.165,
+      "signaling": 0.267,
+      "label_accuracy": 0.612,
+      "labeling": 0.383
+    },
+    "gpt-5.4": {
+      "coherence": 0.149,
+      "signaling": 0.184,
+      "label_accuracy": 0.571,
+      "labeling": 0.396
+    }
+  },
+  "cohens_kappa_llm_vs_llm_450": {
+    "coherence": 0.408,
+    "signaling": 0.532,
+    "label_accuracy": 0.794,
+    "labeling": 0.503
+  },
+  "fleiss_kappa_3_raters_450": {
+    "coherence": 0.244,
+    "signaling": 0.309,
+    "label_accuracy": 0.659,
+    "labeling": 0.419
+  }
+}
