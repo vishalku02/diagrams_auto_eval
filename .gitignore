@@ -1,6 +1,7 @@
 # Data (large CSV - don't commit)
 *.csv
 Coteach Visuals Data*.csv
+!results/*.csv
 
 # Results cache (generated at runtime)
 results/cache/
