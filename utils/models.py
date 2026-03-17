@@ -1,6 +1,6 @@
 """Model factory for multi-provider VLM judge evaluations.
 
-Supports OpenAI, Anthropic, Google, and Together (open-source) APIs.
+Supports OpenAI, Anthropic, Google, Together, and Groq APIs.
 Specify any model from the CLI and the factory routes to the right provider.
 
 Usage:
@@ -40,10 +40,25 @@ DEFAULT_PROVIDER = "together"
 def detect_provider(model_name: str) -> str:
     """Detect provider from model name prefix."""
     name = model_name.strip().lower()
+    if name.startswith("groq/") or name.startswith("groq:"):
+        return "groq"
+    if name.startswith("meta-llama/llama-4-scout-17b-16e-instruct"):
+        return "groq"
     for prefix, provider in MODEL_REGISTRY.items():
         if name.startswith(prefix):
             return provider
     return DEFAULT_PROVIDER
+
+
+def normalize_model_name(model_name: str) -> str:
+    """Strip optional provider hint prefixes like `groq/` or `groq:`."""
+    name = model_name.strip()
+    lowered = name.lower()
+    if lowered.startswith("groq/"):
+        return name.split("/", 1)[1]
+    if lowered.startswith("groq:"):
+        return name.split(":", 1)[1]
+    return name
 
 
 # ---------------------------------------------------------------------------
@@ -357,6 +372,52 @@ class TogetherJudge(BaseJudge):
 
 
 # ---------------------------------------------------------------------------
+# Groq API Judge
+# ---------------------------------------------------------------------------
+class GroqJudge(BaseJudge):
+    def __init__(self, model_name: str, **kwargs):
+        super().__init__(normalize_model_name(model_name))
+        from openai import OpenAI
+        self._client = OpenAI(
+            api_key=os.environ.get("GROQ_API_KEY"),
+            base_url="https://api.groq.com/openai/v1",
+        )
+
+    async def call(self, *, prompt, image_bytes=None, image_media_type="image/png",
+                   temperature=0.0, max_tokens=4096, response_format=None) -> JudgeResponse:
+        content = [{"type": "text", "text": prompt}]
+        if image_bytes:
+            b64 = base64.b64encode(image_bytes).decode()
+            content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:{image_media_type};base64,{b64}"}
+            })
+
+        kwargs: dict[str, Any] = {
+            "model": self.model_name,
+            "messages": [{"role": "user", "content": content}],
+            "max_tokens": max_tokens,
+            "temperature": temperature,
+        }
+        if response_format:
+            kwargs["response_format"] = response_format
+
+        def _sync_call():
+            return self._client.chat.completions.create(**kwargs)
+
+        resp = await asyncio.to_thread(_sync_call)
+        choice = resp.choices[0]
+        usage = resp.usage
+
+        return JudgeResponse(
+            text=choice.message.content or "",
+            input_tokens=usage.prompt_tokens if usage else None,
+            output_tokens=usage.completion_tokens if usage else None,
+            total_tokens=usage.total_tokens if usage else None,
+        )
+
+
+# ---------------------------------------------------------------------------
 # Factory
 # ---------------------------------------------------------------------------
 PROVIDER_MAP: dict[str, type[BaseJudge]] = {
@@ -364,6 +425,7 @@ PROVIDER_MAP: dict[str, type[BaseJudge]] = {
     "anthropic": AnthropicJudge,
     "google": GoogleJudge,
     "together": TogetherJudge,
+    "groq": GroqJudge,
 }
 
 

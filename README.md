@@ -19,6 +19,11 @@ python judge.py --csv data/sample.csv \
 python judge.py --csv data/sample.csv \
     --models claude-sonnet-4-6 meta-llama/Llama-4-Scout-17B-16E \
     --concurrency 4
+
+# Run with Groq API (explicit provider prefix recommended)
+python judge.py --csv data/test_set_450.json \
+    --models groq/meta-llama/llama-4-scout-17b-16e-instruct \
+    --concurrency 4
 ```
 
 ## Environment Variables
@@ -28,6 +33,7 @@ export OPENAI_API_KEY="..."      # For GPT models
 export ANTHROPIC_API_KEY="..."   # For Claude models
 export GOOGLE_API_KEY="..."      # For Gemini models
 export TOGETHER_API_KEY="..."    # For open-source models
+export GROQ_API_KEY="..."        # For Groq models
 ```
 
 ## Structure
